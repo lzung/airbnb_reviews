@@ -1,0 +1,18 @@
+digraph G {
+n2[label="all", color="red"];
+n5[label="data/processed/", color="red"];
+n7[label="data/raw/AB_NYC_2019.csv", color="green"];
+n3[label="eda/", color="red"];
+n8[label="results/", color="red"];
+n6[label="src/preprocess_data.py", color="green"];
+n4[label="src/reviews_eda.py", color="green"];
+n9[label="src/reviews_model_analysis.py", color="green"];
+n3 -> n2 ; 
+n8 -> n2 ; 
+n7 -> n5 ; 
+n6 -> n5 ; 
+n5 -> n3 ; 
+n4 -> n3 ; 
+n5 -> n8 ; 
+n9 -> n8 ; 
+}

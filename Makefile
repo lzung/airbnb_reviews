@@ -3,7 +3,7 @@
 # Date: December 10, 2022
 
 # Run the analysis
-all : results/final
+all : eda/ results/
 
 # Preprocess raw data
 data/processed/ : src/preprocess_data.py data/raw/AB_NYC_2019.csv
@@ -13,13 +13,9 @@ data/processed/ : src/preprocess_data.py data/raw/AB_NYC_2019.csv
 eda/ : src/reviews_eda.py data/processed/
 	python src/reviews_eda.py --input_path=data/processed/ --output_path=eda/
 
-# Perform model selection and save results
-results/model_selection/ : src/model_selection.py data/processed/
-	python src/model_selection.py --data_path=data/processed/ --output_path=results/model_selection/
-
-# Perform model tuning and save results
-results/final/ : src/tune_model.py data/processed/
-	python src/tune_model.py --data_path=data/processed/ --output_path=results/model_tuning/
+# Perform model selection/tuning and save results
+results/ : src/reviews_model_analysis.py data/processed/
+	python src/reviews_model_analysis.py --input_path=data/processed/ --output_path=results/
 
 # Remove intermediate and results files
 clean:
@@ -27,4 +23,5 @@ clean:
 	rm -f data/processed/*
 	rm -f eda/figures/*
 	rm -f eda/tables/*
-	rm -f results/*
+	rm -f results/figures/*
+	rm -f results/tables/*
