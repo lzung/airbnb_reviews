@@ -14,6 +14,7 @@ git clone https://github.com/lzung/airbnb_reviews.git
 
 # change working directory to the root of the repository
 cd airbnb_reviews
+```
 
 First, create and activate the required virtual environment with conda at the command line as follows:
 
@@ -24,6 +25,7 @@ conda activate airbnb_reviews
 
 Then, run the following command at the command line (terminal) to reset the repository to a clean state, with no intermediate or results files:
 
+
 ```bash
 make clean
 ```
@@ -33,3 +35,6 @@ Finally, run the following command to replicate the analysis:
 ```bash
 make all
 ```
+
+## Makefile Dependency Diagram
+![Makefile](Makefile.png)
