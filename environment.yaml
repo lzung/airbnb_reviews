@@ -1,0 +1,30 @@
+name: airbnb_reviews
+channels:
+  - conda-forge
+  - anaconda
+  - defaults
+dependencies:
+- ipykernel
+- matplotlib>=3.2.2
+- scikit-learn>=1.1.3
+- requests>=2.24.0
+- graphviz
+- python-graphviz
+- eli5
+- shap
+- jinja2
+- altair_saver
+- selenium<4.3.0
+- pandas<1.5
+- imbalanced-learn
+- pip
+- lightgbm
+- nltk
+- pip:
+  - docopt-ng==0.8.*
+  - joblib==1.1.0
+  - mglearn
+  - otter-grader
+  - psutil>=5.7.2
+  - altair_ally
+  - vl-convert-python==0.5.0
