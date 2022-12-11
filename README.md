@@ -4,6 +4,10 @@ Contributors: Lauren Zung
 
 A mini project completed during the Fall 2022 session of DSCI 573 (Feature and Model Selection).
 
+## Results
+
+For this regression problem, I chose to optimize $R^2$ score to determine the best model to predict the reviews per month of Airbnb listings. On the test set of 19421 samples, the best model `LGBMRegressor` returned a score of 0.355. I have also computed a root mean squared error of 1.386, therefore the model predictions are approximately off by 1.386 reviews per month.
+
 ## Usage
 
 To replicate this analysis, you will first need to clone the repo.  You can do so with the following command line (terminal) commands.

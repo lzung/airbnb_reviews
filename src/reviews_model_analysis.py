@@ -151,7 +151,7 @@ def main(input_path, output_path):
 
     # Setup decision tree pipeline; set max_depth and min_samples_leaf to prevent severe overfitting
     print('Decision Tree')
-    dt_pipe = make_pipeline(preprocessor, DecisionTreeRegressor(max_depth=30, min_samples_leaf=100))
+    dt_pipe = make_pipeline(preprocessor, DecisionTreeRegressor(max_depth=30, min_samples_leaf=100, random_state=123))
     cross_val_results['DecisionTreeRegressor'] = pd.DataFrame(cross_validate(dt_pipe, X_train, y_train,
                                                                             return_train_score=True)).agg(['mean', 'std']).round(3).T
 
@@ -403,7 +403,7 @@ def main(input_path, output_path):
     plt.ylabel('Actual Reviews per Month')
     plt.ylim(0,10)
     plt.xlim(0,10)
-    plt.show();
+    plt.savefig(f'{output_path}/figures/pred_vs_actual_zoomed.png')
 
     # Create a heatmap to avoid overplotting
     pred_vs_act = pd.DataFrame({'pred': lgbm_search.best_estimator_.predict(X_test), 'act': y_test})
