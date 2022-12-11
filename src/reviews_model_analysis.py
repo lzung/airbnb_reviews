@@ -17,6 +17,7 @@ python src/reviews_model_analysis.py --input_path=data/processed/ --output_path=
 import os
 from docopt import docopt
 import pandas as pd
+import numpy as np
 from sklearn.compose import make_column_transformer
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import OneHotEncoder, KBinsDiscretizer, MinMaxScaler, QuantileTransformer
@@ -33,8 +34,15 @@ from lightgbm.sklearn import LGBMRegressor
 from sklearn.feature_selection import SelectFromModel
 import matplotlib.pyplot as plt
 import eli5
+import shap
+from sklearn.metrics import mean_squared_error
+import altair as alt
+import vl_convert as vlc
 
 opt = docopt(__doc__)
+
+# Render figures given large data set
+alt.data_transformers.disable_max_rows()
 
 def main(input_path, output_path):
     """
@@ -280,7 +288,7 @@ def main(input_path, output_path):
 
     # FEATURE IMPORTANCES---------------------------------------------------------------------
 
-    # Sort examples into above and below median
+    # Sort examples into above and below the median number of reviews
     y_train = y_train.reset_index(drop=True)
     y_train_lower = y_train[y_train < np.median(y_train)]
     y_train_higher = y_train[y_train >= np.median(y_train)]
@@ -295,9 +303,142 @@ def main(input_path, output_path):
     # Get eli5 figure
     weights_df = eli5.explain_weights_df(lgbm_search.best_estimator_.named_steps["lgbmregressor"], feature_names=column_names)
     weights_df.to_csv(f"{output_path}/tables/lgbm_eli5_weights.csv")
-    #  plt.savefig(f'{output_path}/figures/lgbm_eli5_weights.png')
+
+    # Create a shap explainer object 
+    lgbm_explainer = shap.TreeExplainer(lgbm_search.best_estimator_.named_steps["lgbmregressor"])
+    train_lgbm_shap_values = lgbm_explainer.shap_values(X_train_enc_df)
+    shap.summary_plot(train_lgbm_shap_values, X_train_enc_df)
+    plt.savefig(f'{output_path}/figures/shap_summary_plot.png')
+
+    # Below median example
+    shap.force_plot(
+        lgbm_explainer.expected_value, # expected value 
+        train_lgbm_shap_values[X_train_lower.index[1291]], # SHAP values associated with an example with lower reviews per month
+        X_train_lower.iloc[1291, :], # Feature vector of the example 
+        matplotlib=True,
+        text_rotation=45
+    )
+    plt.savefig(f'{output_path}/figures/train_shap_below_median_force_plot.png')
+
+    # Above median example
+    shap.force_plot(
+        lgbm_explainer.expected_value, # expected value 
+        train_lgbm_shap_values[X_train_higher.index[2192]], # SHAP values associated with an example with higher reviews per month
+        X_train_higher.iloc[2192, :], # Feature vector of the example 
+        matplotlib=True,
+        text_rotation=45
+    )
+    plt.savefig(f'{output_path}/figures/train_shap_above_median_force_plot.png')
+
+    # Highest number of reviews in the training data
+    shap.force_plot(
+        lgbm_explainer.expected_value, # expected value 
+        train_lgbm_shap_values[np.argmax(y_train)], # SHAP values associated with the example with the highest number of reviews per month
+        X_train_enc_df.iloc[np.argmax(y_train), :], # Feature vector of the example 
+        matplotlib=True,
+        text_rotation=45
+    )
+    plt.savefig(f'{output_path}/figures/train_shap_most_reviews_force_plot.png')
+
+    # TEST SET RESULTS-----------------------------------------------------------------------
+    # Compute test R^2 and RMSE scores
+    results = {}
+    results['Train R^2'] = lgbm_search.best_estimator_.score(X_train, y_train)
+    results['Train RMSE'] = mean_squared_error(y_train, lgbm_search.best_estimator_.predict(X_train))**0.5
+    results['Test R^2'] = lgbm_search.best_estimator_.score(X_test, y_test)
+    results['Test RMSE'] = mean_squared_error(y_test, lgbm_search.best_estimator_.predict(X_test))**0.5
+    train_test_results = pd.DataFrame(results.values(), columns=['Score'], index=results.keys())
+    train_test_results.to_csv(f"{output_path}/tables/train_test_results.csv")
+
+    # Sort examples into above and below the median number of reviews
+    y_test = y_test.reset_index(drop=True)
+    y_test_lower = y_test[y_test < np.median(y_test)]
+    y_test_higher = y_test[y_test >= np.median(y_test)]
+
+    X_test_enc = lgbm_search.best_estimator_.named_steps['columntransformer'].transform(X_test)
+    X_test_enc_df = pd.DataFrame(X_test_enc.toarray(), columns=column_names, index=X_test.index)
+
+    X_test_lower = X_test_enc_df.loc[X_test_enc_df.index.isin(y_test_lower.index)]
+    X_test_higher = X_test_enc_df.loc[X_test_enc_df.index.isin(y_test_higher.index)]
+
+    # Create a shap explainer object 
+    test_lgbm_shap_values = lgbm_explainer.shap_values(X_test_enc_df)
+
+    # Below median example
+    shap.force_plot(
+        lgbm_explainer.expected_value, # expected value 
+        test_lgbm_shap_values[X_test_lower.index[3]], # SHAP values associated with an example with lower reviews per month
+        X_test_lower.iloc[0, :], # Feature vector of the example 
+        matplotlib=True,
+        text_rotation=45
+    )
+    plt.savefig(f'{output_path}/figures/test_shap_below_median_force_plot.png')
+
+    # Above median example
+    shap.force_plot(
+        lgbm_explainer.expected_value, # expected value 
+        test_lgbm_shap_values[X_test_higher.index[0]], # SHAP values associated with an example with higher reviews per month
+        X_test_higher.iloc[0, :], # Feature vector of the example 
+        matplotlib=True,
+        text_rotation=45
+    )
+    plt.savefig(f'{output_path}/figures/test_shap_above_median_force_plot.png')
+
+    # RESULTS SUMMARY-----------------------------------------------------------------------
+    # Compile all model results
+    cross_val_results_table = pd.concat(cross_val_results, axis=1).T
+    cross_val_results_table.to_csv(f"{output_path}/tables/cross_val_results.csv")
+
+    # Plot predicted vs actual reviews per month
+    plt.plot(y_test, y_test, color='r')
+    plt.scatter(lgbm_search.best_estimator_.predict(X_test), y_test, alpha=0.2)
+    plt.xlabel('Predicted Reviews per Month')
+    plt.ylabel('Actual Reviews per Month')
+    plt.savefig(f'{output_path}/figures/pred_vs_actual.png')
+
+    # Plot predicted vs actual reviews per month, zoomed into majority of samples
+    plt.plot(y_test, y_test, color='r')
+    plt.scatter(lgbm_search.best_estimator_.predict(X_test), y_test, alpha=0.2)
+    plt.xlabel('Predicted Reviews per Month')
+    plt.ylabel('Actual Reviews per Month')
+    plt.ylim(0,10)
+    plt.xlim(0,10)
+    plt.show();
+
+    # Create a heatmap to avoid overplotting
+    pred_vs_act = pd.DataFrame({'pred': lgbm_search.best_estimator_.predict(X_test), 'act': y_test})
+
+    pred_vs_act_chart = (
+        alt.Chart(pred_vs_act).mark_rect(clip=True).encode(
+            alt.X('pred', title='Predicted Reviews per Month', bin=alt.Bin(maxbins=30), scale=alt.Scale(domain=(0, 7))),
+            alt.Y('act', title='Actual Reviews per Month', bin=alt.Bin(maxbins=30), scale=alt.Scale(domain=(0, 20))),
+            alt.Color('count()'))
+    )
+    save_chart(pred_vs_act_chart, f'{output_path}/figures/pred_vs_actual_heatmap.png', 2)
 
 
+def save_chart(chart, filename, scale_factor=1):
+    """
+    Save an Altair chart using vl-convert
+    
+    Parameters
+    ----------
+    chart : altair.Chart
+        Altair chart to save
+    filename : str
+        The path to save the chart to
+    scale_factor: int or float
+        The factor to scale the image resolution by.
+        E.g. A value of `2` means two times the default resolution.
+    """
+    if filename.split('.')[-1] == 'svg':
+        with open(filename, "w") as f:
+            f.write(vlc.vegalite_to_svg(chart.to_dict()))
+    elif filename.split('.')[-1] == 'png':
+        with open(filename, "wb") as f:
+            f.write(vlc.vegalite_to_png(chart.to_dict(), scale=scale_factor))
+    else:
+        raise ValueError("Only svg and png formats are supported")
 
 # Call main
 if __name__ == "__main__":

@@ -1,0 +1,187 @@
+,feature,weight
+0,kbinsdiscretizer-2__availability_365_0.0,0.33545688484699426
+1,quantiletransformer__minimum_nights,0.311495310842588
+2,quantiletransformer__price,0.06983907710963247
+3,quantiletransformer__rel_char_len,0.0397978066442181
+4,quantiletransformer__calculated_host_listings_count,0.03632835360877538
+5,countvectorizer__lga,0.020773166427833445
+6,onehotencoder__room_type_Entire home/apt,0.020234392990791255
+7,countvectorizer__jfk,0.01920007261845315
+8,quantiletransformer__n_words,0.011121079555141682
+9,quantiletransformer__vader_sentiment,0.010259471448605393
+10,onehotencoder__neighbourhood_group_Manhattan,0.008144003499431814
+11,kbinsdiscretizer-1__longitude_18.0,0.0066654805755918325
+12,onehotencoder__neighbourhood_Hell's Kitchen,0.00643283235309853
+13,kbinsdiscretizer-2__availability_365_1.0,0.005395882108368201
+14,kbinsdiscretizer-1__latitude_14.0,0.0051297104394465495
+15,countvectorizer__private,0.004458142996535297
+16,kbinsdiscretizer-1__longitude_19.0,0.004070913907454015
+17,kbinsdiscretizer-1__latitude_0.0,0.003989762144196006
+18,kbinsdiscretizer-1__latitude_15.0,0.0038229560641231397
+19,kbinsdiscretizer-2__availability_365_2.0,0.0036531838672557134
+20,kbinsdiscretizer-1__longitude_3.0,0.0032881704790700124
+21,onehotencoder__room_type_infrequent_sklearn,0.003104508682664025
+22,onehotencoder__neighbourhood_group_Queens,0.0027238302334535755
+23,onehotencoder__neighbourhood_Bedford-Stuyvesant,0.002605429589307709
+24,countvectorizer__apt,0.0025474081443542704
+25,kbinsdiscretizer-1__latitude_2.0,0.0024819284019145555
+26,countvectorizer__times,0.00244081292184667
+27,onehotencoder__neighbourhood_infrequent_sklearn,0.0024187164291088223
+28,countvectorizer__spacious,0.0023806986895148785
+29,kbinsdiscretizer-1__longitude_17.0,0.0018178644343067871
+30,countvectorizer__large,0.0017778085204694033
+31,countvectorizer__suite,0.0017557098992994219
+32,countvectorizer__central,0.0017022446894746632
+33,countvectorizer__garden,0.0015405000170258143
+34,countvectorizer__renovated,0.001523843044788597
+35,countvectorizer__min,0.0014551564592815832
+36,onehotencoder__neighbourhood_group_Brooklyn,0.0013968894148035762
+37,countvectorizer__private bedroom,0.001376614939763317
+38,countvectorizer__mins,0.001317201518147573
+39,onehotencoder__room_type_Private room,0.0012630188850643036
+40,countvectorizer__minutes,0.0012424927264151203
+41,countvectorizer__loft,0.0012096691591397396
+42,countvectorizer__bedroom,0.0011966795811920612
+43,countvectorizer__location,0.0011824205999366323
+44,countvectorizer__1br,0.0011699090534837205
+45,kbinsdiscretizer-1__longitude_6.0,0.0011396510049463341
+46,kbinsdiscretizer-1__latitude_19.0,0.0011173562857584478
+47,countvectorizer__cozy,0.00099030527750984
+48,countvectorizer__apartment,0.0009355816436561152
+49,countvectorizer__studio apartment,0.0008229265933391597
+50,countvectorizer__furnished,0.0007424750413652799
+51,countvectorizer__huge,0.000721932486607454
+52,countvectorizer__home,0.0007087708846654916
+53,countvectorizer__studio,0.0006786416451704294
+54,kbinsdiscretizer-1__latitude_7.0,0.0006124670065425733
+55,kbinsdiscretizer-1__latitude_13.0,0.0006033460943688227
+56,countvectorizer__bdrm,0.0005809303846857046
+57,kbinsdiscretizer-1__longitude_0.0,0.0005740086136744051
+58,countvectorizer__bed,0.0005204787410042471
+59,countvectorizer__best,0.000498549819907804
+60,countvectorizer__place,0.0004858998435801595
+61,countvectorizer__modern,0.0004767164358913873
+62,onehotencoder__neighbourhood_Williamsburg,0.00047034753160981794
+63,countvectorizer__brownstone,0.0004700305188983879
+64,kbinsdiscretizer-1__latitude_1.0,0.00046430650262373034
+65,countvectorizer__light,0.0004523608298749881
+66,countvectorizer__15,0.000446752199756219
+67,countvectorizer__near,0.0004314042850932779
+68,countvectorizer__view,0.00039818649308904147
+69,countvectorizer__duplex,0.00039144098099369356
+70,kbinsdiscretizer-1__longitude_16.0,0.0003815259960724615
+71,onehotencoder__neighbourhood_Harlem,0.0003767803035543421
+72,kbinsdiscretizer-1__latitude_11.0,0.0003764494849583795
+73,countvectorizer__ny,0.0003537545108163892
+74,countvectorizer__historic,0.0003515195912483643
+75,kbinsdiscretizer-1__latitude_3.0,0.00034327067398182604
+76,countvectorizer__nyc,0.0003264081235264088
+77,countvectorizer__steps,0.0003258665542431532
+78,countvectorizer__big,0.00032514216520675073
+79,onehotencoder__neighbourhood_Crown Heights,0.0003060516450029462
+80,countvectorizer__shared,0.00028537504789285953
+81,countvectorizer__subway,0.0002840361204565705
+82,countvectorizer__queen,0.00027831537761877437
+83,countvectorizer__townhouse,0.00027568137004397274
+84,onehotencoder__neighbourhood_Midtown,0.0002577481364393281
+85,countvectorizer__house,0.00025098548717391526
+86,countvectorizer__close,0.0002478763245796391
+87,kbinsdiscretizer-1__longitude_8.0,0.00024678764450941
+88,kbinsdiscretizer-1__latitude_17.0,0.000227005709011628
+89,countvectorizer__bathroom,0.00022486625570887714
+90,countvectorizer__away,0.000224364505261642
+91,kbinsdiscretizer-1__latitude_8.0,0.00022046242988547543
+92,countvectorizer__room,0.00021165887552039862
+93,kbinsdiscretizer-1__latitude_4.0,0.00020922617932562108
+94,kbinsdiscretizer-1__latitude_18.0,0.0002035849205616707
+95,countvectorizer__family,0.00018809568758001435
+96,countvectorizer__convenient,0.00018125965428336527
+97,countvectorizer__cozy studio,0.00017290916472459815
+98,kbinsdiscretizer-1__longitude_15.0,0.00016630447624209005
+99,countvectorizer__views,0.0001646817532001703
+100,countvectorizer__beautiful,0.00015731150538059963
+101,countvectorizer__uws,0.00015265618345775881
+102,kbinsdiscretizer-1__latitude_16.0,0.00014951029693135645
+103,countvectorizer__near central,0.00014060433845005857
+104,countvectorizer__bedroom apartment,0.00013838197204362355
+105,countvectorizer__gem,0.00013660797273246306
+106,kbinsdiscretizer-1__longitude_1.0,0.00012668453991049474
+107,countvectorizer__backyard,0.00011712187932733571
+108,countvectorizer__quiet,0.00011431953012537162
+109,kbinsdiscretizer-1__latitude_10.0,0.00011209197429419862
+110,kbinsdiscretizer-1__longitude_11.0,0.00011184381446724627
+111,kbinsdiscretizer-1__longitude_13.0,0.00011047251371784064
+112,onehotencoder__neighbourhood_group_infrequent_sklearn,0.00010896692226584579
+113,onehotencoder__neighbourhood_Upper West Side,0.00010400001343795102
+114,countvectorizer__br,0.00010335276660161287
+115,countvectorizer__cozy apartment,0.00010039454515324246
+116,countvectorizer__entire,9.778605283188062e-05
+117,countvectorizer__stylish,8.790529238123461e-05
+118,countvectorizer__floor,7.99046935267983e-05
+119,countvectorizer__sunny,7.901606612930523e-05
+120,kbinsdiscretizer-1__longitude_5.0,7.48318677720103e-05
+121,kbinsdiscretizer-1__longitude_12.0,7.426126045073398e-05
+122,kbinsdiscretizer-1__latitude_5.0,6.615097652666753e-05
+123,countvectorizer__sun,6.53599059257287e-05
+124,countvectorizer__luxury,6.349094702386016e-05
+125,countvectorizer__living,6.230195137390835e-05
+126,countvectorizer__comfy,5.741126714647018e-05
+127,countvectorizer__street,5.658572272722582e-05
+128,countvectorizer__chic,4.9168793025003495e-05
+129,kbinsdiscretizer-1__longitude_14.0,4.556415855906888e-05
+130,countvectorizer__sq,4.375861975356579e-05
+131,countvectorizer__artist,3.7937892469818486e-05
+132,countvectorizer__balcony,3.5643989200053234e-05
+133,kbinsdiscretizer-1__longitude_9.0,2.77278992747058e-05
+134,kbinsdiscretizer-1__latitude_6.0,0.0
+135,countvectorizer__cute,0.0
+136,countvectorizer__clean,0.0
+137,kbinsdiscretizer-1__latitude_12.0,0.0
+138,countvectorizer__ues,0.0
+139,countvectorizer__train,0.0
+140,kbinsdiscretizer-1__latitude_9.0,0.0
+141,countvectorizer__building,0.0
+142,onehotencoder__neighbourhood_Bushwick,0.0
+143,countvectorizer__sunny bedroom,0.0
+144,countvectorizer__stay,0.0
+145,onehotencoder__neighbourhood_East Village,0.0
+146,countvectorizer__gorgeous,0.0
+147,countvectorizer__charming,0.0
+148,countvectorizer__stuy,0.0
+149,countvectorizer__filled,0.0
+150,onehotencoder__neighbourhood_Upper East Side,0.0
+151,countvectorizer__sunny room,0.0
+152,countvectorizer__heart,0.0
+153,countvectorizer__spacious room,0.0
+154,countvectorizer__bright,0.0
+155,countvectorizer__block,0.0
+156,countvectorizer__nice,0.0
+157,countvectorizer__amazing,0.0
+158,countvectorizer__2br,0.0
+159,countvectorizer__cozy bedroom,0.0
+160,countvectorizer__cozy private,0.0
+161,countvectorizer__oasis,0.0
+162,countvectorizer__penthouse,0.0
+163,countvectorizer__perfect,0.0
+164,countvectorizer__prime,0.0
+165,countvectorizer__private bathroom,0.0
+166,countvectorizer__private room,0.0
+167,countvectorizer__les,0.0
+168,countvectorizer__rooftop,0.0
+169,countvectorizer__newly,0.0
+170,countvectorizer__room near,0.0
+171,countvectorizer__room private,0.0
+172,countvectorizer__cozy room,0.0
+173,countvectorizer__bed stuy,0.0
+174,countvectorizer__lovely,0.0
+175,kbinsdiscretizer-1__longitude_10.0,0.0
+176,countvectorizer__bedroom apt,0.0
+177,kbinsdiscretizer-1__longitude_7.0,0.0
+178,countvectorizer__master,0.0
+179,kbinsdiscretizer-1__longitude_4.0,0.0
+180,countvectorizer__space,0.0
+181,kbinsdiscretizer-1__longitude_2.0,0.0
+182,countvectorizer__bk,0.0
+183,countvectorizer__spacious bedroom,0.0
+184,countvectorizer__area,0.0
+185,countvectorizer__comfortable,0.0

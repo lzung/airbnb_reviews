@@ -37,7 +37,7 @@ def main(input_path, output_path):
     Parameters
     ----------
     input_path : string
-        The input directory that contains the training data
+        The input directory that contains the preprocessed training data
     output_path : string
         The name of the directory that will contain the EDA plots and tables
     
