@@ -82,6 +82,7 @@ def main(input_path, output_path):
         exit()
     
     # IMPORT DATA AND SPLIT-----------------------------------------------------------------------
+    
     # read train and test data from csv files
     print("Reading data from CSV files...")
     train_df = pd.read_csv(f"{input_path}/airbnb_train_df.csv", na_filter=False)
@@ -162,6 +163,7 @@ def main(input_path, output_path):
                                                                 return_train_score=True)).agg(['mean', 'std']).round(3).T
 
     # FEATURE SELECTION---------------------------------------------------------------------------
+    
     print('LGBM L1 selection')
     # Setup L1 regularization pipeline to select features; set tolerance and maximum iterations to suppress warnings
     lgbm_l1 = make_pipeline(preprocessor, SelectFromModel(LassoCV(max_iter=10_000, tol=0.01)), LGBMRegressor(max_depth=30, random_state=123))
@@ -341,6 +343,7 @@ def main(input_path, output_path):
     plt.savefig(f'{output_path}/figures/train_shap_most_reviews_force_plot.png')
 
     # TEST SET RESULTS-----------------------------------------------------------------------
+
     # Compute test R^2 and RMSE scores
     results = {}
     results['Train R^2'] = lgbm_search.best_estimator_.score(X_train, y_train)
@@ -385,6 +388,7 @@ def main(input_path, output_path):
     plt.savefig(f'{output_path}/figures/test_shap_above_median_force_plot.png')
 
     # RESULTS SUMMARY-----------------------------------------------------------------------
+
     # Compile all model results
     cross_val_results_table = pd.concat(cross_val_results, axis=1).T
     cross_val_results_table.to_csv(f"{output_path}/tables/cross_val_results.csv")
