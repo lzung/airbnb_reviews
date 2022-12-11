@@ -20,5 +20,5 @@ results/ : src/reviews_model_analysis.py data/processed/
 # Remove intermediate and results files
 clean:
 	rm -f data/processed/*
-	rm -f eda/
-	rm -f results/
+	rm -f eda/*
+	rm -f results/*
