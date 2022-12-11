@@ -3,7 +3,7 @@
 # Date: December 10, 2022
 
 # Run the analysis
-all : eda/ results/
+all : data/processed/ eda/ results/
 
 # Preprocess raw data
 data/processed/ : src/preprocess_data.py data/raw/AB_NYC_2019.csv
@@ -19,6 +19,6 @@ results/ : src/reviews_model_analysis.py data/processed/
 
 # Remove intermediate and results files
 clean:
-	rm -f data/processed/*
-	rm -f eda/*
-	rm -f results/*
+	rm -r data/processed/
+	rm -r eda/
+	rm -r results/
