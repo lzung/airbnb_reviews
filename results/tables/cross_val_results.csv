@@ -2,20 +2,20 @@
 DummyRegressor,mean,0.001,0.0,-0.0,0.0
 DummyRegressor,std,0.0,0.0,0.0,0.0
 Ridge,mean,0.17,0.027,0.29,0.305
-Ridge,std,0.016,0.0,0.008,0.002
-LassoCV,mean,3.464,0.027,0.292,0.302
-LassoCV,std,0.27,0.0,0.007,0.003
-DecisionTreeRegressor,mean,0.197,0.027,0.307,0.341
-DecisionTreeRegressor,std,0.001,0.0,0.011,0.001
-LightGBM,mean,0.44,0.031,0.367,0.513
-LightGBM,std,0.003,0.0,0.011,0.004
-LGBM L1,mean,4.5,0.018,0.361,0.491
-LGBM L1,std,0.36,0.001,0.02,0.005
-Ridge Tuned,mean,0.163,0.027,0.291,0.305
-Ridge Tuned,std,0.002,0.0,0.007,0.002
-LGBM Tuned,mean,0.404,0.033,0.361,0.447
-LGBM Tuned,std,0.008,0.001,0.01,0.003
-DT Tuned,mean,0.192,0.027,0.293,0.308
-DT Tuned,std,0.005,0.0,0.014,0.007
-Lasso Tuned,mean,2.205,0.032,0.292,0.302
-Lasso Tuned,std,0.143,0.012,0.007,0.003
+Ridge,std,0.017,0.0,0.008,0.002
+LassoCV,mean,3.4,0.027,0.292,0.302
+LassoCV,std,0.266,0.0,0.007,0.003
+DecisionTreeRegressor,mean,0.198,0.027,0.307,0.341
+DecisionTreeRegressor,std,0.003,0.0,0.011,0.001
+LightGBM,mean,0.443,0.032,0.367,0.513
+LightGBM,std,0.003,0.001,0.011,0.004
+LGBM L1,mean,4.335,0.018,0.361,0.491
+LGBM L1,std,0.117,0.0,0.02,0.005
+Ridge Tuned,mean,0.165,0.027,0.291,0.305
+Ridge Tuned,std,0.007,0.001,0.007,0.002
+LGBM Tuned,mean,0.401,0.033,0.361,0.447
+LGBM Tuned,std,0.002,0.0,0.01,0.003
+DT Tuned,mean,0.19,0.028,0.293,0.308
+DT Tuned,std,0.002,0.001,0.014,0.007
+Lasso Tuned,mean,2.187,0.027,0.292,0.302
+Lasso Tuned,std,0.14,0.0,0.007,0.003

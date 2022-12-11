@@ -82,7 +82,7 @@ def main(input_path, output_path):
         exit()
     
     # IMPORT DATA AND SPLIT-----------------------------------------------------------------------
-    
+
     # read train and test data from csv files
     print("Reading data from CSV files...")
     train_df = pd.read_csv(f"{input_path}/airbnb_train_df.csv", na_filter=False)
@@ -402,7 +402,7 @@ def main(input_path, output_path):
 
     # Plot predicted vs actual reviews per month, zoomed into majority of samples
     plt.plot(y_test, y_test, color='r')
-    plt.scatter(lgbm_search.best_estimator_.predict(X_test), y_test, alpha=0.2)
+    plt.scatter(lgbm_search.best_estimator_.predict(X_test), y_test, alpha=0.2, color='b')
     plt.xlabel('Predicted Reviews per Month')
     plt.ylabel('Actual Reviews per Month')
     plt.ylim(0,10)
